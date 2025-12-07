@@ -1,0 +1,7 @@
+{
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "compile-hero.disable-compile-files-on-did-save-code": true,
+  "editor.fontSize": 14,
+  "files.autoSave": "afterDelay"
+}

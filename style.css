@@ -3,6 +3,19 @@
 }
 
 
+.myDiv ~ .p3 {
+  background-color: red;
+}
+
+.myDiv + .p1 {
+  background-color: blue;
+}
+
+
+p {
+  
+}
+
 /*! The JavaScript language */
 
 /*? An Introduction */

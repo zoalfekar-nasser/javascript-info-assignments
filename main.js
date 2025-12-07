@@ -1258,6 +1258,41 @@ Conclusion: evade equality checks when working with decimal fractions. */
 // console.log(arr4);
 
 //* Create an extendable calculator
+
+// function Calculator() {
+//   this.operators = {
+//     "+": function (a, b) {
+//       return a + b;
+//     },
+
+//     "-": function (a, b) {
+//       return a - b;
+//     },
+//   };
+//   this.calculate = function (str) {
+//     const arrSrt = str.split(" ");
+//     let a = +arrSrt[0];
+//     let b = +arrSrt[2];
+//     let op = arrSrt[1];
+
+//     if (op in this.operators && !isNaN(a) && !isNaN(b)) {
+//       return this.operators[op](a, b);
+//     } else {
+//       return "There is no such operators";
+//     }
+//   };
+
+//   this.addMethod = function (name, func) {
+//     this.operators[name] = func;
+//   };
+// }
+
+// const calc = new Calculator();
+
+// calc.addMethod("*", (a, b) => a * b);
+
+// console.log(calc.calculate("2 * 2"));
+
 //* Map to names
 
 //? You have an array of user objects, each one has user.name. Write the code that converts it into an array of names.
@@ -1319,14 +1354,14 @@ Conclusion: evade equality checks when working with decimal fractions. */
 
 //? Multiple runs of shuffle may lead to different orders of elements.For instance:
 
-function getRandomNumber(min, max) {
-  const MIN = Math.min(+min, +max);
-  const MAX = Math.max(+min, +max);
+// function getRandomNumber(min, max) {
+//   const MIN = Math.min(+min, +max);
+//   const MAX = Math.max(+min, +max);
 
-  let randomNumber = Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
+//   let randomNumber = Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
 
-  return randomNumber;
-}
+//   return randomNumber;
+// }
 
 // function fisherYatesShuffle(array = []) {
 //   const arr = array.slice();
@@ -1638,28 +1673,28 @@ function getRandomNumber(min, max) {
 
 //* Sum the properties
 
-// function sumSalaries(obj) {
-//   let sum = 0;
+// function sumSalaries(salaries = {}) {
+// const salariesArray = Object.values(salaries);
 
-//   for (let salary of Object.values(obj)) {
-//     sum += salary;
-//   }
+// let sumOfSalaries = 0;
 
-//   return sum;
+// for (let salary of salariesArray) {
+
+//   sumOfSalaries += salary;
+
 // }
 
-// let salaries = {
-//   John: 100,
-//   Pete: 300,
-//   Mary: 250,
-// };
+// return sumOfSalaries;
+
+// return Object.values(salaries).reduce((acc, e) => acc + e, 0);
+// }
 
 // console.log(sumSalaries(salaries));
 
 //* Count properties
 
 // function count(obj = {}) {
-//   return Object.entries(obj).length;
+//   return Object.keys(obj).length;
 // }
 
 // let user = {
@@ -1670,6 +1705,47 @@ function getRandomNumber(min, max) {
 // console.log( count(user) ); // 2
 
 //TODO 5-10 Destructuring assignment
+
+//* Destructuring assignment
+
+// let user = {
+//   name: "John",
+//   years: 30
+// };
+
+// let {name, years: age, isAdmin = false} = user;
+
+// console.log( name ); // John
+// console.log( age ); // 30
+// console.log( isAdmin ); // false
+
+//*The maximal salary
+
+// let salaries = {
+//   John: 100,
+//   Pete: 300,
+//   Mary: 250,
+// };
+
+// function topSalary(salaries = {}) {
+//   if (Object.keys(salaries).length === 0) {
+//     return null;
+//   }
+
+//   let maxPaidPerson = "";
+//   let maxSalary = 0;
+
+//   for (let [person, salary] of Object.entries(salaries)) {
+//     if (salary > maxSalary) {
+//       maxPaidPerson = person;
+//       maxSalary = salary;
+//     }
+//   }
+
+//   return maxPaidPerson;
+// }
+
+// console.log(topSalary(salaries));
 
 //*1
 // function getUserInfo({ name, address: { city } = {}, status = "Active" } = {}) {
@@ -2607,46 +2683,43 @@ function getRandomNumber(min, max) {
 
 //* Set and decrease for counter
 
-function makeCounter() {
-  function counter() {
-    return counter.count++;
-  }
+// function makeCounter() {
+//   function counter() {
+//     return counter.count++;
+//   }
 
-  counter.count = 0;
-  counter.set = function (number) {
-    counter.count = number;
-  };
+//   counter.count = 0;
+//   counter.set = function (number) {
+//     counter.count = number;
+//   };
 
-  counter.decrease = function () {
-    counter.count--;
-  };
+//   counter.decrease = function () {
+//     counter.count--;
+//   };
 
-  return counter;
-}
+//   return counter;
+// }
 
-let counter = makeCounter();
+// let counter = makeCounter();
 
-console.log(counter());
-console.log(counter());
-console.log(counter());
+// console.log(counter());
+// console.log(counter());
+// console.log(counter());
 
-counter.set(10);
+// counter.set(10);
 
-console.log(counter());
-console.log(counter());
-console.log(counter());
+// console.log(counter());
+// console.log(counter());
+// console.log(counter());
 
-counter.decrease()
-counter.decrease()
-counter.decrease()
-counter.decrease()
+// counter.decrease();
+// counter.decrease();
+// counter.decrease();
+// counter.decrease();
 
-console.log(counter());
-
+// console.log(counter());
 
 //* Sum with an arbitrary amount of brackets
-
-
 
 // function slowOperation(arg) {
 
@@ -2667,58 +2740,2112 @@ console.log(counter());
 
 //TODO 6-7 The "new Function" syntax
 
+// let globalVar = "I am global";
 
-let globalVar = "I am global";
+// function scopeTest() {
+//   let localVar = "I am local";
 
-function scopeTest() {
-  let localVar = "I am local";
+//   // Case 1: A standard function expression (closure)
+//   const normalFunction = () => {
+//     console.log("--- Normal Function ---");
+//     console.log(globalVar);
+//     console.log(localVar);
+//   };
 
-  // Case 1: A standard function expression (closure)
-  const normalFunction = () => {
-    console.log("--- Normal Function ---");
-    console.log(globalVar);
-    console.log(localVar);
-  };
+//   // Case 2: Using the Function constructor
+//   const dynamicFunction = new Function(`
+//     console.log("--- Dynamic Function ---");
+//     console.log(globalVar);
+//     console.log(localVar);
+//   `);
 
-  // Case 2: Using the Function constructor
-  const dynamicFunction = new Function(`
-    console.log("--- Dynamic Function ---");
-    console.log(globalVar);
-    console.log(localVar);
-  `);
+//   normalFunction();
 
-  normalFunction();
+//   try {
+//     dynamicFunction();
+//   } catch (error) {
+//     console.log("--- Dynamic Function ---");
+//     console.error("An error occurred:", error.message);
+//   }
+// }
 
-  try {
-    dynamicFunction();
-  } catch (error) {
-    console.log("--- Dynamic Function ---");
-    console.error("An error occurred:", error.message);
-  }
-}
+// scopeTest();
 
-scopeTest();
+// function createOperation(op) {
+//   if (op != "+" && op != "-" && op != "/" && op !== "*") {
+//       throw new Error(
+//         "Invalid operator. Please use one of '+', '-', '*', or '/'."
+//       );
+//   }
+
+//   createOperation.op = op;
+
+//   const operation = new Function(
+//     "a, b",
+//     `
+//     switch(createOperation.op) {
+//       case "+":
+//           return a + b;
+//           break;
+//       case "-":
+//           return a - b;
+//           break;
+//       case "/":
+//           return a / b;
+//           break;
+//       case "*":
+//           return a * b;
+//           break;
+//     }
+//     `
+//   );
+
+//   return operation;
+// }
+
+// let add = createOperation("");
+
+// console.log(add());
 
 //TODO 6-8 Scheduling: setTimeout and setInterval
+
+//*  Output every second
+// function printNumbersUpWithInterval(from, to) {
+//   let currentCounter = Math.min(from, to);
+//   let targetNumber = Math.max(from, to);
+
+//   let intervalId = setInterval(() => {
+//     console.log(currentCounter++);
+
+//     if (currentCounter > targetNumber) {
+//       console.log("Counter Done !");
+//       clearInterval(intervalId);
+//     }
+//   }, 1000);
+// }
+
+// function printNumbersUpWithTimeout(from, to) {
+//   let currentCounter = Math.min(from, to);
+//   let targetNumber = Math.max(from, to);
+
+//   function counter() {
+//     if (currentCounter > targetNumber) {
+//       console.log("Counter Done !");
+//       return;
+//     }
+
+//     console.log(currentCounter++);
+
+//     setTimeout(counter, 100);
+//   }
+
+//   counter();
+// }
+
+// function printNumbers(from, to) {
+
+//   let currentCounter = from;
+//   const step = (from < to) ? 1 : -1;
+
+//   function counter() {
+//     if (
+//       (step === 1 && currentCounter > to) ||
+//       (step === -1 && currentCounter < to)
+//     ) {
+//       return;
+//     }
+
+//     console.log(currentCounter);
+//     currentCounter += step;
+
+//     setTimeout(counter, 250);
+//   }
+
+//   counter();
+// }
+
+// printNumbers(2, 10);
+
+// printNumbersUp(10, 1);
+
+//* What will setTimeout show?
+
+//* AI Assignments
+// function printCounter(counter) {
+//   function countDown() {
+//     console.log(countDown.counter--);
+//   }
+//   countDown.counter = counter;
+
+//   let counterTimer = 1000;
+
+//   let countDownId = setInterval(countDown, counterTimer);
+
+//   setTimeout(() => {
+//     if (countDown.counter === 0) {
+//       clearInterval(countDownId);
+//       console.log("Liftoff!");
+//     }
+//   }, counterTimer * countDown.counter);
+// }
+
+// printCounter(20);
+
+// function printCounter(counter) {
+//   let currentCounter = counter;
+
+//   let counterId = setInterval(() => {
+//     console.log(currentCounter--);
+//     if (currentCounter === 0) {
+//       clearInterval(counterId);
+//       console.log("Liftoff!");
+//     }
+//   }, 1000);
+// }
+
+// printCounter(10)
+
+// function printCounterSetTimeOut(counter) {
+//   let currentCounter = counter;
+
+//   function countDown() {
+//     console.log(currentCounter--);
+//     if (currentCounter > 0) {
+//       setTimeout(countDown, 1000);
+//     } else {
+//       console.log("Liftoff!");
+//     }
+//   }
+//   setTimeout(countDown, 1000);
+// }
+
+// printCounterSetTimeOut(5);
+
+// function type(HTMLElement = document.body, text = "") {
+//   let currentIndex = 0;
+
+//   function addChar() {
+//     if (currentIndex === text.length) {
+//       return;
+//     }
+
+//     HTMLElement.textContent += text[currentIndex];
+//     currentIndex++;
+//     setTimeout(addChar, 150);
+//   }
+
+//   addChar();
+// }
+
+// const myP = document.querySelector("#myP");
+// type(myP, "Hello World!")
+
 //TODO 6-9 Decorators and forwarding, call/apply
+
+//* Spy decorator
+
+// function spy(func = function(){}) {
+//   if (func.calls === undefined) {
+//     func.calls = [];
+//   }
+
+//   func.calls.pop(getArgs(func.arguments));
+
+//   return function (...args) {
+//     func.call(this, ...args);
+//   }
+// }
+
+// function getArgs(array) {
+//   const args = []
+//   for (let arg of array) {
+//     args.pop(arg)
+//   }
+
+//   return args;
+// }
+
+// function work(a, b) {
+//   console.log(a + b); // work is an arbitrary function or method
+// }
+
+// work = spy(work);
+
+// work(1, 2); //
+// work(4, 5); // 9
+
+// for (let args of work.calls) {
+//   alert("call:" + args.join()); // "call:1,2", "call:4,5"
+// }
+
+//* Delaying decorator
+//* Debounce decorator
+//* Throttle decorator
+
 //TODO 6-10 Function binding
+
+//* Bound function as a method
+
+// function f() {
+//   console.log(this); // ? // The answer is null
+// }
+
+// let user = {
+//   g: f.bind(null),
+// };
+
+// user.g();
+
+//* Second bind
+
+// function f() {
+//   console.log(this.name);
+// }
+
+// f = f.bind({ name: "John" }).bind({ name: "Ann" });
+
+// f();
+
+// The exotic bound function object returned by f.bind(...) remembers the context (and arguments if provided) only at creation time.
+// A function cannot be re-bound.
+
+//* Function property after bind
+
+// function sayHi() {
+//   alert( this.name );
+// }
+// sayHi.test = 5;
+
+// let bound = sayHi.bind({
+//   name: "John"
+// });
+
+// alert( bound.test ); //? what will be the output? why?
+
+// The answer: undefined.
+// The result of bind is another object. It does not have the test property.
+
+//* Fix a function that loses "this"
+
+// function askPassword(ok, fail) {
+//   let password = prompt("Password?", "");
+//   if (password == "rockstar") ok();
+//   else fail();
+// }
+
+// let user = {
+//   name: "John",
+
+//   loginOk() {
+//     alert(`${this.name} logged in`);
+//   },
+
+//   loginFail() {
+//     alert(`${this.name} failed to log in`);
+//   },
+// };
+
+// askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+
+//* Partial application for login
+
+// function askPassword(ok, fail) {
+//   let password = prompt("Password?", "");
+//   if (password == "rockstar") ok();
+//   else fail();
+// }
+
+// let user = {
+//   name: "John",
+
+//   login(result) {
+//     alert(this.name + (result ? " logged in" : " failed to log in"));
+//   },
+// };
+
+// askPassword(user.login.bind(user, true), user.login.bind(user, false)); //
+
+// const arrowObject = {
+//   userName: "Zoalfekar Nasser",
+
+//   arrowFunc: () => {
+//     console.log(this);
+//   }
+// }
+
+// arrowObject.arrowFunc();
+
+// console.log(mmm);
+
+// alert("12" >= 1)
+
+// console.log(false ?? "null");
+
+// function sum1(n1, n2) {
+//   return n1 + n2;
+// }
+
+// function sum2(n1, n2) {
+//   return n1 - n2;
+// }
+
+// console.log(sum1(1, 2));
+
+// sum1 = 2;
+
+// console.log(sum1);
+
 //TODO 6-11 Arrow functions revisited
 
 //? Object properties configuration
+
 //TODO 7-1 Property flags and descriptors
+
+//* Assignment 1: Inspecting and Understanding (Theory)
+
+// const user = {
+//   name: "Zoalfekar",
+//   age: 23,
+// }
+
+// console.log(Object.getOwnPropertyDescriptor(user, "age"));
+
+// console.log(Object.getOwnPropertyDescriptor(Math, "PI"));
+
+//* Assignment 2: Creating a Secure Property (Coding)
+
+// const user = {};
+
+// Object.defineProperty(user, "id", {
+//   value: Date.now(),
+//   writable: false,
+//   enumerable: false,
+//   configurable: false,
+// })
+
+// console.log(user.id);
+
+// console.log(Object.getOwnPropertyDescriptor(user, "id"));
+
+// try {
+//   Object.defineProperty(user, "id", {
+//     enumerable: true,
+//   });
+
+//   delete user.id;
+// } catch (error) {
+//   console.log("You Cannot do that because of 'configurable: false', and this is one way road, and you cannot go back.");
+// }
+
+//* Assignment 3: The "Perfect" Shallow Clone (Real-World Application)
+//! Solved later after learning prototype
+
 //TODO 7-2 Property getters and setters
+
+//* Assignment 1: The Smart Product (Basics)
+
+// const product = {
+//   name: "ASUS ROG Strix G17 G713QE",
+//   price: 1200,
+//   discount: 0.25,
+
+//   get finalPrice() {
+//     return `$${this.price - this.price * this.discount}`;
+//   }
+
+// }
+
+// console.log(product.finalPrice); // $900
+
+// product.price = 1400;
+
+// console.log(product.finalPrice); // $1050
+
+//* Assignment 2: The Validated Bank Account (Intermediate)
+
+// const bankAccount = {
+
+//   _balance: 0,
+
+// };
+
+// Object.defineProperty(bankAccount, "balance", {
+//   get() {
+//     return this._balance;
+//   },
+
+//   set(value) {
+
+//     if (value < 0) {
+//       console.error("Balance cannot be negative.");
+//       return;
+//     }
+
+//     this._balance = value;
+//     console.log(`Setting balance to: ${value}.`);
+//   }
+// });
+
+// bankAccount.balance = 200;
+
+// console.log(bankAccount.balance);
+
+// bankAccount.balance = -45;
+
+//*Assignment 3: The Legacy Wrapper (Advanced/Real World)
+
+// const rect = {
+//   _width: 10,
+//   _height: 20,
+
+//   get width() {
+//     return this._width;
+//   },
+
+//   set width(value) {
+//     if (!isFinite(value)) {
+//       console.error("Invalid datatype.");
+//     }
+
+//     if (value < 0) {
+//       console.error("The width cannot be negative.");
+//     }
+
+//     this._width = +value;
+//   },
+
+//   get height() {
+//     return this._height;
+//   },
+
+//   set height(value) {
+//     if (!isFinite(value)) {
+//       console.error("Invalid datatype.");
+//     }
+
+//     if (value < 0) {
+//       console.error("The height cannot be negative.");
+//     }
+
+//     this._height = +value;
+//   },
+
+//   get area() {
+//     return this._width * this._height;
+//   },
+
+//   set area(value) {
+//     if (!isFinite(value)) {
+//       console.error("Invalid datatype.");
+//     }
+
+//     if (value < 0) {
+//       console.error("The area cannot be negative.");
+//       return;
+//     }
+//     this._height = value / this._width;
+//   },
+// };
 
 //? Prototypes, inheritance
 //TODO 8-1 Prototypal inheritance
+
+//* Working with prototype
+
+// Here’s the code that creates a pair of objects, then modifies them.
+
+// Which values are shown in the process?
+
+// let animal = {
+//   jumps: null
+// };
+// let rabbit = {
+//   __proto__: animal,
+//   jumps: true
+// };
+
+// alert( rabbit.jumps ); // ? (1)
+
+// delete rabbit.jumps;
+
+// alert( rabbit.jumps ); // ? (2)
+
+// delete animal.jumps;
+
+// alert( rabbit.jumps ); // ? (3)
+
+//!The Answer:
+
+// true, taken from rabbit.
+// null, taken from animal.
+// undefined, there’s no such property any more.
+
+//* Searching algorithm
+
+// let head = {
+//   glasses: 1,
+// };
+
+// let table = {
+//   pen: 3,
+// };
+
+// let bed = {
+//   sheet: 1,
+//   pillow: 2,
+// };
+
+// let pockets = {
+//   money: 2000,
+// };
+
+// pockets.__proto__ = bed;
+
+// bed.__proto__ = table;
+
+// table.__proto__ = head;
+
+// console.log(pockets.pen);
+// console.log(bed.glasses);
+
+// let begin, end;
+
+// begin = Date.now();
+
+// console.log(bed.glasses);
+
+// end = Date.now();
+
+// console.log(`The Time is With prototype : ${(end - begin) / 1000}s`);
+
+// bed.glasses = 2;
+
+// begin = Date.now();
+
+// console.log(bed.glasses);
+
+// end = Date.now();
+
+// console.log(`The Time is Without prototype : ${(end - begin) / 1000}s`);
+
+//* Where does it write?
+
+// We have rabbit inheriting from animal.
+
+// If we call rabbit.eat(), which object receives the full property: animal or rabbit?
+
+// let animal = {
+//   eat() {
+//     this.full = true;
+//   }
+// };
+
+// let rabbit = {
+//   __proto__: animal
+// };
+
+// rabbit.eat();
+
+//! The answer: rabbit.
+
+// That’s because this is an object before the dot, so rabbit.eat() modifies rabbit.
+
+// Property lookup and execution are two different things.
+
+// The method rabbit.eat is first found in the prototype, then executed with this=rabbit.
+
+//* Why are both hamsters full?
+// We have two hamsters: speedy and lazy inheriting from the general hamster object.
+
+// When we feed one of them, the other one is also full. Why? How can we fix it?
+
+// let hamster = {
+//   stomach: [],
+
+//   eat(food) {
+//     this.stomach.push(food);
+//   }
+// };
+
+// let speedy = {
+//   __proto__: hamster
+// };
+
+// let lazy = {
+//   __proto__: hamster
+// };
+
+// // This one found the food
+// speedy.eat("apple");
+// alert( speedy.stomach ); // apple
+
+// // This one also has it, why? fix please.
+// alert(lazy.stomach); // apple
+
+//! solution
+
+// Let’s look carefully at what’s going on in the call speedy.eat("apple").
+
+// The method speedy.eat is found in the prototype (=hamster), then executed with this=speedy (the object before the dot).
+
+// Then this.stomach.push() needs to find stomach property and call push on it. It looks for stomach in this (=speedy), but nothing found.
+
+// Then it follows the prototype chain and finds stomach in hamster.
+
+// Then it calls push on it, adding the food into the stomach of the prototype.
+
+// So all hamsters share a single stomach!
+
+// Both for lazy.stomach.push(...) and speedy.stomach.push(), the property stomach is found in the prototype (as it’s not in the object itself), then the new data is pushed into it.
+
+// Please note that such thing doesn’t happen in case of a simple assignment this.stomach=:
+
+// let hamster = {
+//   stomach: [],
+
+//   eat(food) {
+//     // assign to this.stomach instead of this.stomach.push
+//     this.stomach = [food];
+//   }
+// };
+
+// let speedy = {
+//    __proto__: hamster
+// };
+
+// let lazy = {
+//   __proto__: hamster
+// };
+
+// // Speedy one found the food
+// speedy.eat("apple");
+// alert( speedy.stomach ); // apple
+
+// // Lazy one's stomach is empty
+// alert( lazy.stomach ); // <nothing>
+// Now all works fine, because this.stomach= does not perform a lookup of stomach. The value is written directly into this object.
+
+// Also we can totally avoid the problem by making sure that each hamster has their own stomach:
+
+// let hamster = {
+//   stomach: [],
+
+//   eat(food) {
+//     this.stomach.push(food);
+//   }
+// };
+
+// let speedy = {
+//   __proto__: hamster,
+//   stomach: []
+// };
+
+// let lazy = {
+//   __proto__: hamster,
+//   stomach: []
+// };
+
+// // Speedy one found the food
+// speedy.eat("apple");
+// alert( speedy.stomach ); // apple
+
+// // Lazy one's stomach is empty
+// alert( lazy.stomach ); // <nothing>
+// As a common solution, all properties that describe the state of a particular object, like stomach above, should be written into that object. That prevents such problems.
+
+//*1 Assignment 1: Theory and Concepts (Conceptual)
+
+// const vehicle = {
+//   startEngine() {
+//     console.log(`Engine on for ${this.model}`);
+//   }
+// }
+
+// const tesla = {
+//   model: "Model S",
+// }
+
+// const car = {};
+
+// Object.setPrototypeOf(tesla, car);
+
+// Object.setPrototypeOf(car, vehicle);
+
+// tesla.startEngine();
+
+// JS Engine first will search for startEngine() in tesla object , it will not find it, so it will move to its prototype (The beginning of the prototype chain) it will not find it also, and it will move to its prototype which is vehicle and it will find the method startEngin(), and 'this' refers to the first object (the object to the left of dot (tesla)) so the JS engine will find it and log "Engine on for Model S"
+
+//*2 Assignment 2: Creating a Hierarchy (Coding)
+
+// const htmlElement = {
+//   render() {
+//     return `Rendering a generic ${this.tagName}`
+//   }
+
+// }
+
+// const divElement = Object.create(htmlElement);
+
+// divElement.tagName = "div";
+
+// const pElement = Object.create(htmlElement);
+
+// pElement.tagName = "p";
+
+// const mainDiv = Object.create(divElement);
+
+// mainDiv.id = "main-content";
+
+// console.log(mainDiv.render());
+// console.log(pElement.render());
+
+//*3 Assignment 3: Real-World State Management (Problem Solving)
+
+// const component = {
+//   state: {},
+
+//   setState(key, value) {
+//     this.state[key] = value;
+//   }
+
+// }
+
+// const button = Object.create(component);
+
+// const input = Object.create(component);
+
+// button.setState("text", "Click Me!")
+
+// console.log(input.state);
+
+//Why did the input component get the state of the button?
+// The answer is because both input and button share the same (state) object which comes from the inherited object (component), and the fix is so simple, give each one of (input, button) its own state object, so here is the fixed code:
+
+// const component = {
+
+//   setState(key, value) {
+//     if (this.hasOwnProperty("state")) {
+//       this.state = Object.assign(this.state, { [key]: value });
+//     } else {
+//       this.state = Object.assign({}, { [key]: value });
+//     }
+//   },
+// };
+
+// const button = Object.create(component);
+
+// const input = Object.create(component);
+
+// button.setState("text", "Click Me!");
+// button.setState("hover", "Hover Me!")
+// input.setState("focus", true);
+
+// console.log(button.state); //{text: 'Click Me!', hover: 'Hover Me!'}
+// console.log(input.state); //{focus: true}
+
 //TODO 8-2 F.prototype
+
+//* Changing "prototype"
+
+// In the code below we create new Rabbit, and then try to modify its prototype.
+
+// In the start, we have this code:
+
+// function Rabbit() {}
+// Rabbit.prototype = {
+//   eats: true
+// };
+
+// let rabbit = new Rabbit();
+
+// alert( rabbit.eats ); // true
+// We added one more string (emphasized). What will alert show now?
+
+// function Rabbit() {}
+// Rabbit.prototype = {
+//   eats: true
+// };
+
+// let rabbit = new Rabbit();
+
+// Rabbit.prototype = {};
+
+// alert( rabbit.eats ); // ?
+// …And if the code is like this (replaced one line)?
+
+// function Rabbit() {}
+// Rabbit.prototype = {
+//   eats: true
+// };
+
+// let rabbit = new Rabbit();
+
+// Rabbit.prototype.eats = false;
+
+// alert( rabbit.eats ); // ?
+// And like this (replaced one line)?
+
+// function Rabbit() {}
+// Rabbit.prototype = {
+//   eats: true
+// };
+
+// let rabbit = new Rabbit();
+
+// delete rabbit.eats;
+
+// alert( rabbit.eats ); // ?
+// The last variant:
+
+// function Rabbit() {}
+// Rabbit.prototype = {
+//   eats: true
+// };
+
+// let rabbit = new Rabbit();
+
+// delete Rabbit.prototype.eats;
+
+// alert( rabbit.eats ); // ?
+// solution
+// Answers:
+
+// true.
+
+// The assignment to Rabbit.prototype sets up [[Prototype]] for new objects, but it does not affect the existing ones.
+
+// false.
+
+// Objects are assigned by reference. The object from Rabbit.prototype is not duplicated, it’s still a single object referenced both by Rabbit.prototype and by the [[Prototype]] of rabbit.
+
+// So when we change its content through one reference, it is visible through the other one.
+
+// true.
+
+// All delete operations are applied directly to the object. Here delete rabbit.eats tries to remove eats property from rabbit, but it doesn’t have it. So the operation won’t have any effect.
+
+// undefined.
+
+// The property eats is deleted from the prototype, it doesn’t exist any more.
+
+//* Create an object with the same constructor
+
+// function F(name) {
+//   this.name = name;
+// }
+
+// const f1 = new F("Zoalfekar");
+
+// console.log(f1.name);
+
+// const f2 = new f1.constructor("Ali");
+
+// console.log(f2.name);
+
+// F.prototype = { test: true };
+
+// const f3 = new f2.constructor("Ahmed");
+
+// console.log(f3.name);
+
+// console.log(f3.__proto__);
+
+// const f4 = new f3.constructor(2);
+
+// console.log(f4);
+
+//* Assignment 1: Theoretical Questions
+
+//1 The value is: {isElectronic: true};
+//2 The value of Gadget.prototype is : {isElectronic: true}, and yes they are the same object
+//3 it will output false, why ? because there is no such (constructor) property in 'watch' object or its prototype, the search process will continue until accessing the constructor property in the 'Object' constructor which is the same as 'Object (something)'
+//and to fix this problem we have to compensation the constructor property in the Gadget prototype like that:
+// Gadget.prototype.constructor = Gadget; and now it will work
+//4 Yes, because Function prototype is a one-time gift, so the 'watch' prototype will see the changes of function prototype after creation BUT it does not care if
+// replace the whole prototype object (Please explain this point more, because i did not fully understand how the object does not care if we replace the whole object, and in the same time it sees the changes like deleting or adding or modifying)
+
+//5 it will remain true, because the reference of the watch prototype will remain the same, it will deliver the JS engine to the object in the memory that has { isElectronic: true },
+// oh now i understand the point that i asked you about,
+// the function prototype and the object prototype reference to the same object in the memory, that's why when we modify on the function prototype, the object prototype can see this modifying, because simply they are the same object,
+// but, there is a pop-up in my head now, which is "THAT ALSO MEANS IF WE MODIFY ANY OBJECT PROTOTYPE, THAT WILL MODIFY THE PROTOTYPE OF ITS CONSTRUCTOR FUNCTION", oh that is dangerous in my opinion, because we can do that:
+
+// watch.__proto__.forTesting = "TEST";
+
+// console.log(watch.forTesting);
+
+// console.log(Gadget.prototype.forTesting); //TEST
+
+// let watch2 = new Gadget("t1", "t2");
+
+// console.log(watch2.forTesting); // TEST
+
+// SO WHAT CAN WE DO HERE ?
+
+// function Gadget(name, color) {
+//   this.name = name;
+//   this.color = color;
+// }
+
+// Gadget.prototype = {
+//   isElectronic: true,
+// };
+
+// let watch = new Gadget("Smart Watch", "Black");
+
+// console.log(watch.isElectronic);
+
+// watch.__proto__.forTesting = "TEST";
+
+// console.log(watch.forTesting);
+
+// console.log(Gadget.prototype.forTesting);
+
+// let watch2 = new Gadget("t1", "t2");
+
+// console.log(watch2.forTesting);
+
+// Gadget.prototype.isElectronic = false;
+
+// Gadget.prototype.canTurnWifi = true;
+
+//  Gadget.prototype = {};
+
+// console.log(watch.canTurnWifi);
+
+//* Assignment 2: Coding a Constructor with Prototypes
+
+// function Book(title, author) {
+//   this.title = title;
+//   this.author = author;
+
+// }
+
+// Book.prototype["getDetails"] = function () {
+//   return `Title: ${this.title}, Author: ${this.author}`;
+// }
+
+// Book.genre = "Fiction";
+
+// const book1 = new Book("The Hobbit", "J.R.R Tolkien");
+
+// const book2 = new Book("1984", "George Orwell");
+
+// console.log(book1.getDetails()); // Title: The Hobbit, Author: J.R.R Tolkien
+// console.log(book2.getDetails()); // Title: 1984, Author: George Orwell
+
+// console.log(book1.hasOwnProperty("getDetails")); // false
+
+//* Assignment 3: Real-World Refactoring
+
+// function Player(name) {
+//   this.name = name;
+
+//   this.health = 100;
+
+//   this.inventory = [];
+// }
+
+// Player.prototype = {
+//   constructor: Player,
+
+//   logState() {
+//     console.log(
+//       `Player ${this.name}, Health ${
+//         this.health
+//       }, Inventory: ${this.inventory.join(", ")}`
+//     );
+//   },
+
+//   addToInventory(item) {
+//     this.inventory.push(item);
+//   },
+// };
+
+// // function Player(name) {
+// //   this.name = name;
+// //   this.health = 100;
+// //   this.inventory = [];
+
+// //   this.logState = function() {
+// //     console.log(
+// //       `Player: ${this.name}, Health: ${this.health}, Inventory: ${this.inventory.join(', ')}`
+// //     );
+// //   };
+
+// //   this.addToInventory = function(item) {
+// //     this.inventory.push(item);
+// //   }
+// // }
+
+// let player1 = new Player("Aragorn");
+// player1.addToInventory("sword");
+
+// let player2 = new Player("Gandalf");
+// player2.addToInventory("staff");
+
+// Problem: player1.logState is a different function than player2.logState. This wastes memory.
+// console.log(player1.logState === player2.logState); // false
+// console.log(player1.addToInventory === player2.addToInventory); // false
+
 //TODO 8-3 Native prototypes
+
+// const t1 = {
+//   name: "Name",
+//   valueOf() {
+//     return "Value Of";
+//   },
+
+//   toString() {
+//     return "toString";
+//   },
+// };
+
+// // Object.setPrototypeOf(t1, null);
+
+// // alert(t1);
+
+// const arr1 = [1, 2, 3];
+
+// console.log(Object.getPrototypeOf(arr1));
+
+// console.log(arr1.length);
+
+// function sumOf(n1, n2) {
+//   return n1 + n2;
+// }
+
+// console.log(Object.getPrototypeOf(sumOf));
+// const t1 = {
+//   name: "Name",
+//   valueOf() {
+//     return "Value Of";
+//   },
+
+//   toString() {
+//     return "toString";
+//   },
+// };
+
+// // Object.setPrototypeOf(t1, null);
+
+// // alert(t1);
+
+// const arr1 = [1, 2, 3];
+
+// console.log(Object.getPrototypeOf(arr1));
+
+// console.log(arr1.length);
+
+// function sumOf(n1, n2) {
+//   return n1 + n2;
+// }
+
+// console.log(Object.getPrototypeOf(sumOf));
+
+//* Add method "f.defer(ms)" to functions
+
+// Function.prototype["defer"] = function (ms) {
+//   setTimeout(this, ms);
+// }
+
+// function f() {
+//   alert("Hello!");
+// }
+
+// f.defer(1000)
+
+//* Add the decorating "defer()" to functions
+
+// Function.prototype.defer = function(ms) {
+//   let f = this;
+//   return function(...args) {
+//     setTimeout(() => f.apply(this, args), ms);
+//   }
+// };
+
+// // check it
+// function f(a, b) {
+//   alert( a + b );
+// }
+
+// f.defer(1000)(1, 2); // shows 3 after 1 sec
+
+// // Please note: we use this in f.apply to make our decoration work for object methods.
+
+// // So if the wrapper function is called as an object method, then this is passed to the original method f.
+
+// Function.prototype.defer = function(ms) {
+//   let f = this;
+//   return function(...args) {
+//     setTimeout(() => f.apply(this, args), ms);
+//   }
+// };
+
+// let user = {
+//   name: "John",
+//   sayHi() {
+//     alert(this.name);
+//   }
+// }
+
+// user.sayHi = user.sayHi.defer(1000);
+
+// user.sayHi();
+
+//*
+//*
+//*
+//*
+
 //TODO 8-4 Prototype methods, objects without __proto__
 
-//? Classes
+//* Add toString to the dictionary
+
+// const dictionary = Object.create(null);
+
+// Object.defineProperty(dictionary, "toString", {
+//   value: function () {
+//     return Object.keys(this).join(", ");
+//   },
+//   writable: true,
+//   configurable: true,
+// })
+
+// dictionary.apple = "Apple";
+// dictionary.__proto__ = "test";
+
+// for (let key in dictionary) {
+//   console.log(key); // "apple", then "__proto__"
+// }
+
+// console.log(dictionary.toString());
+
+//* The difference between calls
+
+// function Rabbit(name) {
+//   this.name = name;
+// }
+// Rabbit.prototype.sayHi = function() {
+//   console.log(this.name);
+// };
+
+// let rabbit = new Rabbit("Rabbit");
+
+// // These calls do the same thing or not?
+
+// rabbit.sayHi()
+// Rabbit.prototype.sayHi()
+// Object.getPrototypeOf(rabbit).sayHi()
+// rabbit.__proto__.sayHi()
+
+// The first call has this == rabbit, the other ones have this equal to Rabbit.prototype, because it’s actually the object before the dot.
+
+// So only the first call shows Rabbit, other ones show undefined:
+
+//*
+
+//? Classes OOP
+
 //TODO 9-1 Class basic syntax
+
+//* Rewrite to class
+
+// class Clock {
+
+//   constructor({ template}) {
+//     this.timer = null
+//     this.template = template;
+//   }
+
+//   render() {
+//     let date = new Date();
+
+//     let hours = date.getHours()
+//     if (hours < 10) hours = "0" + hours;
+
+//     let mins = date.getMinutes()
+//     if (mins < 10) mins = "0" + mins;
+
+//     let secs = date.getSeconds();
+//     if (secs < 10) secs = "0" + secs;
+
+//     let output = this.template.replace("h", hours).replace("m", mins).replace("s", secs);
+
+//     console.log(output);
+//   };
+
+//   stop() {
+//     clearInterval(this.timer);
+//   }
+
+//   start() {
+//     this.render();
+//     timer = setInterval(() => { this.render() }, 1000);
+//   }
+
+// }
+
+// let clock = new Clock({ template: "h:m:s" });
+
+// clock.start()
+
+//* Assignment 1: The Basic Blueprint (Theory & Syntax)
+
+// class Product {
+
+//   constructor(name, price) {
+//     this.name = name;
+//     this.price = price;
+//   }
+
+//   display() {
+//     console.log(`Product "${this.name}" costs ${this.price}$`);
+//   }
+
+//   get taxes() {
+//     return this.price * 0.1;
+//   }
+
+// }
+
+// const p1 = new Product("ASUS ROG Strix G17", 1200);
+
+// p1.display()
+// console.log(p1.taxes)
+
+//* Assignment 2: Rewriting Constructors (Migration)
+
+// class LibraryBook {
+
+//   isAvailable = true;
+
+//   constructor(title) {
+//     this.title = title;
+//   }
+
+//   borrow() {
+//     this.isAvailable = false;
+
+//     console.log(`'${this.title}' borrowed.`);
+//   }
+// }
+
+// const book1 = new LibraryBook("OOP In JS Explained");
+
+// console.log(book1.isAvailable); // true
+
+// book1.borrow();
+
+// console.log(book1.isAvailable); // false
+
+//* Assignment 3: The "Clicker" Component (Real-world Logic)
+
+// class ClickCounter {
+//   counts = 0;
+
+//   click = () => {
+//     console.log(this.counts++);
+//   }
+
+//   startAutoClick () {
+//     setInterval(this.click, 1000)
+//   }
+
+// }
+
+// const clickCounter = new ClickCounter();
+
+// clickCounter.startAutoClick()
+
+//
+
 //TODO 9-2 Class inheritance
+
+// class GenericAnimal {
+//   constructor(age) {
+//     this.age = age;
+//   }
+
+//   run() {
+//     console.log(`Run Comes From GenericAnimal`);
+//   }
+// }
+
+// class SpecificAnimal extends GenericAnimal {
+//   constructor(age, id) {
+//     super(age);
+//     this.id = id;
+//   }
+
+//   // run() {
+//   //   console.log(`Run Comes From SpecificAnimal`);
+//   // }
+// }
+
+// class Rabbit extends SpecificAnimal {
+
+//   constructor(name,id,age) {
+//     super(age,id);
+//     this.name = name;
+
+//   }
+
+//   run() {
+//     super.run();
+//     console.log(`Run From Rabbit`);
+//   }
+// }
+
+// const rabbit = new Rabbit("ZZZ",2222,22);
+
+// console.log(rabbit.name);
+// console.log(rabbit.id);
+// console.log(rabbit.age);
+// rabbit.run();
+
+//* Error creating an instance
+
+// class Animal {
+//   constructor(name) {
+//     this.name = name;
+//   }
+// }
+
+// class Rabbit extends Animal {
+//   constructor(name) {
+//     this.name = name;
+//     this.created = Date.now();
+//   }
+// }
+
+// let rabbit = new Rabbit("White Rabbit"); //! Error: this is not defined
+// alert(rabbit.name);
+
+// class Animal {
+//   constructor(name) {
+//     this.name = name;
+//   }
+// }
+
+// class Rabbit extends Animal {
+//   constructor(name) {
+//     super(name);
+//     this.created = Date.now();
+//   }
+// }
+
+// let rabbit = new Rabbit("White Rabbit"); //! Ok Now
+// alert(rabbit.name);
+
+//* Extended clock
+
+//* Assignment 1: The RPG Character (Basics)
+
+// class Character {
+//   constructor(name, health) {
+//     this.name = name;
+//     this.health = health;
+//   }
+
+//   attack() {
+//     console.log(`${this.name} attacks with fists`);
+//   }
+// }
+
+// class Mage extends Character {
+//   mana = 100;
+
+//   attack() {
+//     if (this.mana >= 10) {
+//       this.mana -= 10;
+
+//       console.log(`${this.name} casts a fireball`);
+//     } else {
+//       super.attack();
+//     }
+//   }
+// }
+
+// //* Assignment 2: The Custom Error (Constructor logic)
+
+// class ValidationError extends Error {
+//   constructor(message, code) {
+//     super(message);
+//     this.name = "ValidationError";
+//     this.code = code;
+
+//   }
+
+// }
+
+// let err = new ValidationError("Error message", "Error code");
+
+// // 1. We wrap the dangerous code in 'try'
+// try {
+//   const age = -5; // Invalid age
+
+//   if (age < 0) {
+//     // 2. "Pull the pin". We throw YOUR custom class.
+//     throw new ValidationError("Age cannot be negative", 400);
+//   }
+
+//   console.log("This line is skipped because of the error!");
+
+// } catch (err) {
+//   // 3. The code JUMPS here immediately if an error happens.
+
+//   // We can inspect the error object we just threw
+//   if (err instanceof ValidationError) {
+//     console.log("Validation Failed!");
+//     console.log(`Message: ${err.message}`); // "Age cannot be negative"
+//     console.log(`Code: ${err.code}`);       // 400
+//   } else {
+//     console.log("Unknown error occurred.");
+//   }
+// }
+
+// console.log(err.message);
+// console.log(err.stack);
+// console.log(err.code);
+
+//* Assignment 3 (The Hard One)
+
+// class Config {
+
+//   get prefix() {
+//     return "Default"
+//   }
+
+//   constructor() {
+
+//     console.log(this.prefix);
+//   }
+// }
+
+// class UserConfig extends Config {
+//   get prefix() {
+//     return "User"
+//   }
+// }
+
+// new UserConfig(); // Logs: "User" !!
+
+// Simply because the order of execution, when we create an instance of
+// UserConfig and because of UserConfig inherits Config the constructor of
+//  Config is called first, and when its called it logs `Current Prefix: ${this.prefix}`
+// now the question is: from where we get the value of prefix ?
+// the order is this:
+// Creating The u Object
+// Calling the constructor of Config (super)
+// constructor wants to log `Current Prefix: ${this.prefix}`
+// JS Engine looks for prefix property in u object ("this" refers to u)
+// JS Engine cannot find the prefix property in Object, Why ? the prefix in that moment does not initialized yet
+// because of that JS Engine starts to looking for prefix in u's prototype, which is Config.prototype
+// JS Engine finds prefix and logs Current Prefix: Default
+// This is my understanding for this situation, if im wrong please tell me and explain deeply
+
+//TODO Multi-Level Inheritance
+
+//* Assignment 1: The Stack Trace (Mental Model)
+
+// class God {
+//   log() {
+//     console.log("1");
+//   }
+// }
+
+// class Adam extends God {
+//   log() {
+//     console.log("2 - Start");
+//     super.log()
+//     console.log("2 - End");
+//   }
+// }
+
+// class Human extends Adam {
+
+//   log() {
+//     super.log()
+//     console.log("3");
+//   }
+// }
+
+// const human = new Human();
+
+// human.log();
+
+// 2 - Start
+// 1
+// 2 - End
+// 3
+
+//* Assignment 2: The "Middleman" Modifier (Data Flow)
+
+// class BasePrice {
+//   calculate(cost) {
+//     return cost;
+//   }
+// }
+
+// class TaxLayer extends BasePrice {
+//   calculate(cost) {
+//     let newCost = cost + cost * 0.2;
+//     return super.calculate(newCost);
+//   }
+// }
+
+// class DiscountLayer extends TaxLayer {
+//   calculate(cost) {
+//     return super.calculate(cost) - 10;
+//   }
+// }
+
+// const p1 = new DiscountLayer();
+
+// console.log(p1.calculate(100));
+
+//* Assignment 3: The "Skipped Link"
+
+// class GrandParent {
+//   eat() {
+//     console.log("From GrandParent");
+//   }
+// }
+
+// class Parent extends GrandParent {}
+
+// class Child extends Parent {
+//   eat() {
+//     super.eat();
+//   }
+// }
+
+// new Child().eat();
+
+/*
+For me this the Easiest One,
+
+Simply, super does not mean (look for the method in the Direct Parent and stop there)
+but it means ( START looking for the method in the Direct Parent, and if you cannot find it continue to its prototype and so on)
+so the result is : From GrandParent
+
+*/
+
+//*
+
+// class Logger {
+
+//   timestamp = 1010;
+
+//   getPrefix() {
+//     return "System:";
+//   }
+
+//   log(message) {
+//     console.log(`${this.getPrefix()} ${message}`);
+//   }
+
+//   constructor(message) {
+//     this.log(message)
+//   }
+
+// }
+
+// class TimeLogger extends Logger {
+//   timestamp = Date.now();
+
+//   getPrefix() {
+//     return super.getPrefix() + " at " + this.timestamp;
+//   }
+// }
+
+// class ErrorLogger extends TimeLogger {
+//   getPrefix() {
+//     return "[ERROR]" + super.getPrefix();
+//   }
+// }
+
+// new ErrorLogger("Database Fail");
+
+//1
+
+/*
+
+When we run new ErrorLogger("Database Fail") what happens?
+
+The constructor is inherited from Logger, and it runs this.log, which is only found in Logger Prototype also,
+
+then this will runs  console.log(`${this.getPrefix()} ${message}`);
+
+the engine tries to run getPrefix(), so it looks for it in this firs, and it finds it
+
+then it runs return "[ERROR]" + super.getPrefix();
+
+the super.getPrefix() runs, which is super.getPrefix() + " at " + this.timestamp
+
+the super.getPrefix() runs, and it returns System:, and then we go down and continue running, 
+(the super.getPrefix() from TimeLogger) and it returns after that at {this.timestamp}
+
+so until now we have this "[ERROR]System: at this.timestamp", why this.timestamp is undefined,
+
+because first until now the constructor in Logger does not finish yet, so the only fields that can be seen are
+
+the Logger fields, and Logger has no such field, so its value is undefined,
+
+we continue running, so we are now in the end of this.log() method
+
+so we try to print message, so the final result is:
+
+[ERROR]System: at undefined Database Fail
+
+
+*/
+
+// Now the Refactored Code:
+
+// class Logger {
+//   timestamp = 1010;
+
+//   getPrefix() {
+//     return "System:";
+//   }
+
+//   log(message) {
+//     console.log(`${this.getPrefix()} ${message}`);
+//   }
+
+//   constructor(message) {
+//     this.log(message);
+//   }
+// }
+
+// class TimeLogger extends Logger {
+//   getTimestamp() {
+//     return Date.now();
+//   }
+
+//   getPrefix() {
+//     return super.getPrefix() + " at " + this.getTimestamp();
+//   }
+// }
+
+// class ErrorLogger extends TimeLogger {
+//   getPrefix() {
+//     return "[ERROR]" + super.getPrefix();
+//   }
+
+// }
+
+// new ErrorLogger("Database Fail");
+
+/* 
+
+I told you why the first code failed, now let me tell you why this one works, 
+simply because we do not deal with the class field headache anymore
+we deal now with the methods and prototypes,
+so when the Engine reaches   this.getTimestamp() it looks for it in the object's prototype first,
+then the next prototype until it reaches it in TimeLogger, and it runs it
+
+and i prefer:
+
+  getTimestamp() {
+    return Date.now();
+  }
+  
+  on:
+
+  get timestamp() {
+    return Date.now()
+  }
+  
+  why ?
+
+  because if we assume there is timestamp filed in Logger, it will be used, for example:
+
+  class Logger {
+  timestamp = 1010;
+
+  getPrefix() {
+    return "System:";
+  }
+
+  log(message) {
+    console.log(`${this.getPrefix()} ${message}`);
+  }
+
+  constructor(message) {
+    this.log(message);
+  }
+}
+
+class TimeLogger extends Logger {
+  get timestamp() {
+    return Date.now();
+  }
+
+  getPrefix() {
+    return super.getPrefix() + " at " + this.timestamp;
+  }
+}
+
+class ErrorLogger extends TimeLogger {
+  getPrefix() {
+    return "[ERROR]" + super.getPrefix();
+  }
+
+
+}
+
+new ErrorLogger("Database Fail"); The result: [ERROR]System: at 1010 Database Fail
+
+
+so my solution is the safest one, (Please explain more the behavior above)
+
+*/
+
+//* Assignment 1: The Broken Transfer (Concept: [[HomeObject]])
+
+// class A {
+//   test() {
+//     console.log("A");
+//   }
+// }
+
+// class B extends A {
+//   test() {
+//     super.test();
+//   }
+// }
+
+// const objB = new B();
+
+// const outsideObj = {
+
+//   test: objB.test,
+
+// }
+
+// outsideObj.test();
+
+/*
+
+Yes, the method Logs "A", why ?
+
+when we copy the objB.test() to outside.test, they became exactly the same function, in everything,
+
+so when we run outsideObj.test(), we can say we run objB.test(), the super inside the functions, looks for
+outside.test.[[HomeObject]].prototype, which is A.prototype, so A.test() runs, and logs "A"
+
+(The [[HomeObject]] does not change, it is always the same, and we have simply the same functions there)
+
+
+console.log(outsideObj.test === objB.test); true
+
+*/
+
+//* Assignment 2: The "Unseen" Property (Concept: Field Order)
+
+// class BaseConfig {
+
+//   getTheme() {
+//     return "Light"
+//   }
+
+//   constructor() {
+//     console.log(this.getTheme());
+//   }
+
+// }
+
+// class DarkConfig extends BaseConfig{
+
+//     getTheme() {
+//     return "Dark"
+//   }
+
+// }
+
+// new DarkConfig();
+
+//*
+
+// const parent = {
+//   name: "Parent",
+//   show() {
+//     console.log(this.name);
+//   }
+// }
+
+// const child = {
+//   __proto__: parent,
+
+//   show() {
+//     this.__proto__.show.call(this);
+//   }
+// }
+
+// const grandChild = {
+//   __proto__: child,
+
+//   show() {
+//     this.__proto__.show.call(this);
+//   },
+// };
+
+// grandChild.show();
+
+//! HomeObject and super Assignments
+
+//*Assignment 1: The "Frankenstein" Method (Static Anchor)
+
+// class Human {
+//   breathe() {
+//     return "Inhaling Oxygen ";
+//   }
+// }
+
+// class Alien {
+//   breathe() {
+//     return "Inhaling CO2";
+//   }
+// }
+
+// class Cyborg extends Human {
+//   breathe() {
+//     return super.breathe() + "and processing data";
+//   }
+// }
+
+// let alienObj = new Alien();
+
+// alienObj.breathe = new Cyborg().breathe;
+
+// console.log(alienObj.breathe());
+
+/*
+Output: Inhaling Oxygen and processing data
+
+Explanation:
+when we did: alienObj.breathe = new Cyborg().breathe;
+we override the original breathe method in alienObj object
+with breathe method from a Cyborg object, this method returns:
+" super.breathe() + "and processing data", now here when we call alienObj.breathe()
+what will be the value of (super), as you know we copied the 
+breathe method from Cyborg by reference, so basically
+the method inside alienObj, and inside Cyborg are the same
+
+so for the value of (super), JS engine looks for [[HomeObject]]
+from the breathe method inside Cyborg, which
+is Cyborg, so now super is [[HomeObject]].prototype.prototype, which is
+Human, (The [[HomeObject]].prototype is the prototype of Cyborg) 
+so the prototype of the prototype of Cyborg is the prototype of Human, so because of that we had the result above.
+
+*/
+
+
+
+
+
+
+//* Assignment 2: The Runtime Surgery (Dynamic Chain)
+
+
+
+//*
+//*
 //TODO 9-3 Static properties and methods
+
+//* Class extends Object?
+
+function CCC(n) {
+  this.n = n;
+}
+// console.log(Object.getPrototypeOf(CCC));
+
+
+
+// class Rabbit {
+//   constructor(name) {
+//     this.name = name;
+//   }
+// }
+
+// let rabbit = new Rabbit("Rab");
+// class Rabbit extends Object {
+//   constructor(name) {
+//     super();
+//     this.name = name;
+//   }
+// }
+
+// let rabbit = new Rabbit("Rab");
+
+// console.log(rabbit.hasOwnProperty("name"));
+
+// console.log(Function.__proto__);
+
+//* Assignment 1: The Configuration Class (Foundational)
+
+// class ServiceConfig {
+//   static BASE_URL = "https://api.example.com";
+
+//   static getUrl(endpoint) {
+//     return this.BASE_URL + endpoint;
+//   }
+
+// }
+
+// console.log(ServiceConfig.getUrl("/user"));
+
+//* Assignment 2: Instance Counter (Intermediate)
+// class User {
+//   static userCount = 0;
+//   constructor() {
+//     User.userCount++;
+//   }
+
+//   static getDetails() {
+//     console.log(`Total users created: ${this.userCount}`);
+//   }
+
+// }
+
+// const o1 = new User();
+// const o2 = new User();
+// const o3 = new User();
+
+// User.getDetails() //3
+
+//* Assignment 3: Sorting with Inheritance (Advanced)
+
+// class Shape {
+//   constructor(area) {
+//     this.area = area;
+//   }
+
+//   static compare(shape1, shape2) {
+
+//     return shape1.area - shape2.area;
+
+//   }
+
+// }
+
+// class Square extends Shape {
+
+//   constructor(sideLength) {
+//     super(sideLength * sideLength);
+//   }
+
+// }
+
+// const s1 = new Square(2);
+// const s2 = new Square(3);
+// const s3 = new Square(4);
+// const s4 = new Square(5);
+
+// const squares = [s3, s4, s1, s2];
+
+// console.log(squares);
+
+// const sortedSquares = squares.sort(Square.compare);
+
+// console.log(sortedSquares); //sorted
+
 //TODO 9-4 Private and protected properties and methods
+
+//* Assignment 1: The Basic "Protected" User (Theory & Convention)
+
+// class User {
+//   _age = 1;
+
+//   set age(value) {
+
+//     if (value < 0) {
+//       console.error("Warning, invalid negative age");
+//       return;
+//     }
+
+//     this._age = value
+//   }
+
+//   get age() {
+//     return this._age;
+//   }
+
+// }
+
+// const user = new User();
+
+// user.age = -5; // Warning, invalid negative age
+
+//* Assignment 2: The "Private" Bank Vault (Modern Syntax)
+
+// class BankAccount {
+
+//   #balance = 0;
+
+//   deposit(amount) {
+
+//     if (amount < 0) {
+//       console.error("Warning, Cannot deposit negatives");
+//       return;
+//     }
+
+//     this.#balance += amount;
+//   }
+
+//   withdraw(amount) {
+//     if (amount > this.#balance) {
+//       console.error("Warning, Insufficient funds!");
+//       return;
+//     }
+//     this.#balance -= amount;
+//     console.log(`Withdrawing $${amount} succeed, Your new balance is $${this.#balance}`);
+
+//   }
+
+//   getBalance() {
+//     return `Your account has: $${this.#balance}`
+//   }
+
+// }
+
+// const myAccount = new BankAccount();
+
+// // myAccount.#balance = 1555; // Error: main.js:4771 Uncaught SyntaxError: Private field '#balance' must be declared in an enclosing class
+
+// myAccount.deposit(15000);
+
+// console.log(myAccount.getBalance());
+
+// // myAccount.withdraw(17000); // Warning, Insufficient funds!
+
+// myAccount.withdraw(14000) // Withdrawing $14000 succeed, Your new balance is $1000
+
+// console.log(myAccount.getBalance()); //Your account has: $1000
+
+//* Assignment 3: Read-Only Power Grid (Real World Scenario)
+
+// class PowerPlant {
+//   constructor(output) {
+//     this._maxOutput = output;
+//   }
+
+//   get maxOutput() {
+//     return this._maxOutput;
+//   }
+
+// }
+
+// const plant = new PowerPlant(100);
+
+// console.log(plant.maxOutput);
+
+// plant.maxOutput = 200; // Error: Uncaught TypeError: Cannot set property maxOutput of #<PowerPlant> which has only a getter
+
+
+
 //TODO 9-5 Extending built-in classes
 //TODO 9-6 Class checking: "instanceof"
 //TODO 9-7 Mixins
@@ -2865,3 +4992,510 @@ scopeTest();
 //TODO 7-15 Catastrophic backtracking
 //TODO 7-16 Sticky flag "y", searching at position
 //TODO 7-17 Methods of RegExp and String
+
+//1 i will use let, because maybe the name will be changed later
+//2 Absolutely let, because the temperature will be updated every hour
+//3 const, because the API URL will never change
+//4 const, const is always recommended to declare objects and arrays
+
+// The names:
+
+//1 Not valid, the dash (-) is not allowed
+//2 Not valid, the numbers in the beginning of the variable name are not allowed
+//3 Valid, the underscore (_) is an allowed character
+//4 Valid, the Dollar Sign ($) is an allowed character
+
+//1 5
+//2 "5null"
+//3 10
+//4 NaN
+//5 False
+//6 "No users"
+//7
+//8
+//9
+
+// console.log(5 + null);
+
+//1
+//2
+//3
+//4
+//5
+//6
+//7
+//8
+//9
+
+//1
+//2
+//3
+//4
+//5
+//6
+//7
+//8
+//9
+
+//1
+//2
+//3
+//4
+//5
+//6
+//7
+//8
+//9
+
+// function describeValue(value) {
+
+//   if (Number.isNaN(value)) {
+//     return "This is Not-a-Number";
+//   }
+
+//   if (value === null) {
+//     return "This is a null value"
+//   }
+
+//   if (Array.isArray(value)) {
+//     return "This is an array";
+//   }
+
+//   let valueType = typeof value;
+
+//   switch (valueType) {
+//     case "string":
+//       return "This is a string";
+//     case "number":
+//       return "This is a number";
+//     case "boolean":
+//       return "This is a boolean";
+//     case "bigint":
+//       return "This is a bigint";
+//     case "function":
+//       return "This is a function";
+//     case "symbol":
+//       return "This is a symbol";
+//     case "object":
+//       return "This is an object";
+//     case "undefined":
+//       return "This is undefined";
+//   }
+// }
+
+// const user = {};
+
+// user.name = "John";
+
+// user.surname = "Smith";
+
+// user.name = "Pete";
+
+// delete user.name;
+
+// function makeUser() {
+//   return {
+//     name: "John",
+//     ref: this
+//   };
+// }
+
+// let user = makeUser();
+
+// console.log( user.ref.name ); // What's the result?
+
+// const ladder = {
+//   step: 0,
+
+//   up() {
+//     this.step++;
+//     return this;
+//   },
+//   down() {
+//     this.step--;
+//     return this;
+//   },
+//   showStep() {
+//     console.log(this.step);
+//     return this;
+//   }
+// }
+
+// ladder.up().up().down().showStep().down().showStep();
+
+// function Calculator() {
+//   this.read = function () {
+//     this.a = +prompt("Enter a number", 0);
+//     this.b = +prompt("Enter a number", 0);
+//   };
+
+//   this.sum = function () {
+//     return a + b;
+//   }
+
+//   this.mul = function () {
+//     return a * b;
+//   }
+// };
+
+// function Accumulator(startingValue) {
+//   this.value = startingValue;
+
+//   this.read = function () {
+//     this.value += +prompt("Enter a number", 0);
+//   }
+// }
+
+// let acc = new Accumulator(2);
+
+// acc.read();
+// acc.read();
+// acc.read();
+
+// console.log(acc.value);
+
+// 1
+
+// function readNumber() {
+//   let num = prompt("Enter a number");
+
+//   if (num === null || num === "") {
+//     return null;
+//   }
+
+//   while (!isFinite(num)) {
+//     num = prompt("Enter a number");
+//   }
+
+//   return +num;
+// }
+
+// console.log(readNumber());
+
+// function ucFirst(str="") {
+//   return str[0].toUpperCase() + str.slice(1);
+// }
+
+// console.log(ucFirst("abc"));
+
+// function checkSpam(str = "") {
+//   return (
+//     str.toLowerCase().includes("viagra") || str.toLowerCase().includes("xxx")
+//   );
+// }
+
+// function truncate(str = "", maxLength) {
+//   return str.length > maxLength ? str.slice(0, maxLength - 1) + "..." : str;
+// }
+
+// console.log(truncate("What I'd like to tell on this topic is:", 20));
+// console.log(truncate("Hi everyone!", 20));
+
+// function extractCurrencyValue(str = "") {
+//   return +str.slice(1);
+// }
+
+// console.log(extractCurrencyValue("$421"));
+
+// const styles = ["Jazz", "Blues", "Hello"];
+
+// styles.push("Rock-n-Roll");
+
+// styles[Math.floor(styles.length / 2)] = "Classics";
+
+// console.log(styles);
+
+// console.log(styles.shift());
+
+// styles.unshift("Rap", "Reggae");
+
+// function sumInput() {
+//   let num;
+
+//   const numbers = [];
+
+//   while (true) {
+//     let value = prompt("Enter a number", 0);
+
+//     if (!isFinite(value) || value === null || value === "") {
+//       break;
+//     }
+
+//     numbers.push(+value);
+//   }
+
+//   return numbers.reduce((acc, ele) => acc + ele, 0);
+// }
+
+// console.log(sumInput());
+
+// function camelize(str = "") {
+//   return str
+//     .split("-")
+//     .map((ele, i) => {
+//       return i !== 0 ? ele[0].toUpperCase() + ele.slice(1) : ele;
+//     })
+//     .join("");
+// }
+
+// console.log(camelize("background-color"));
+// console.log(camelize("-background-color"));
+
+// function filterRange(arr = [], a = 0, b = 0) {
+//   const MIN = Math.min(+a, +b);
+//   const MAX = Math.max(+a, +b);
+
+//   return arr.filter((e) => e >= MIN && e <= MAX);
+// }
+
+// console.log(filterRange([5, 3, 8, 4, 2, 1], 1, 4));
+
+// let arr = [5, 2, 1, -10, 8];
+
+// arr.sort((a, b) => b - a);
+
+// console.log(arr);
+
+// function copySorted(arr = []) {
+//   return [...arr].sort((a, b) => a.localeCompare(b));
+// }
+
+// let arr2 = ["HTML", "JavaScript", "CSS"];
+
+// console.log(copySorted(arr2));
+
+// console.log(arr2);
+
+// function Calculator() {
+//   this.calculate = (str = "") => {
+//     return str.split(" ").filter(n => +n).reduce((acc, e) => acc + e);
+
+//   }
+// }
+
+// let john = { name: "John", age: 25 };
+// let pete = { name: "Pete", age: 30 };
+// let mary = { name: "Mary", age: 28 };
+
+// let users = [john, pete, mary];
+
+// const names = users.map(e => e.name);
+
+// console.log(names);
+
+// let john = { name: "John", surname: "Smith", id: 1 };
+// let pete = { name: "Pete", surname: "Hunt", id: 2 };
+// let mary = { name: "Mary", surname: "Key", id: 3 };
+
+// let users = [john, pete, mary];
+
+// const usersMapped = users.map((e) => ({
+//   fllName: e.name + " " + e.surname,
+//   id: e.id,
+// }));
+
+// console.log(usersMapped);
+
+// let john = { name: "John", age: 25 };
+// let pete = { name: "Pete", age: 30 };
+// let mary = { name: "Mary", age: 28 };
+
+// let users = [pete, john, mary];
+
+// function sortByAge(users) {
+
+//   users.sort((a, b) => a.age - b.age);
+
+// }
+
+// sortByAge(users);
+
+// console.log(users);
+
+// function unique(arr = []) {
+//   // return Array.from(new Set(arr));
+
+//   let uniques = [];
+
+//   for (let item of arr) {
+//     if (uniques.indexOf(item) === -1) {
+//       uniques.push(item);
+//     }
+//   }
+
+//   return uniques;
+// }
+
+// let strings = [
+//   "Hare",
+//   "Krishna",
+//   "Hare",
+//   "Krishna",
+//   "Krishna",
+//   "Krishna",
+//   "Hare",
+//   "Hare",
+//   ":-O",
+// ];
+
+// console.log(unique(strings));
+
+// let users = [
+//   { id: "john", name: "John Smith", age: 20 },
+//   { id: "ann", name: "Ann Smith", age: 24 },
+//   { id: "pete", name: "Pete Peterson", age: 31 },
+// ];
+
+// function groupById(users = []) {
+//   return users.map((u) => ({
+//     [u.id]: {
+//       id: u.id,
+//       name: u.name,
+//       age: u.age,
+//     },
+//   }));
+// }
+
+// let usersById = groupById(users);
+
+// console.log(usersById);
+
+// function aclean(arr = [""]) {
+
+//   const resultMap = new Map();
+
+//   for (let item of arr) {
+//     resultMap.set(item.toLowerCase().split("").sort((a, b) => a.localeCompare(b)).join(""), item);
+//   }
+
+//   return Array.from(resultMap.values());
+
+// }
+
+// let aaa = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+// console.log(aclean(aaa));
+
+// let m1 = { text: "Hello", from: "John" };
+
+// let m2 = { text: "How goes?", from: "John" };
+
+// let m3 = { text: "See you soon", from: "Alice" };
+
+// let messages = [m1, m2, m3];
+
+// const messagesSet = new WeakSet();
+
+// for (let message of messages) {
+//   messagesSet.add(message);
+// }
+
+// m1 = null;
+
+// console.log(messagesSet);
+
+// let salaries = {
+//   John: 100,
+//   Pete: 300,
+//   Mary: 250,
+// };
+
+// function count(obj) {
+//   return Object.keys(obj).length;
+// }
+
+// let user = {
+//   name: "John",
+//   age: 30,
+// };
+
+// console.log(count(user));
+
+// const userProfile = {
+//   name: "Jane Doe",
+//   email: "jane.doe@example.com",
+//   address: {
+//     city: "New York",
+//     country: "USA",
+//   },
+// };
+
+// function getUserInfo({ name, address: { city } = {}, status = "active" } = {}) {
+//   return `User ${name} from ${city} is currently ${status}`;
+// }
+
+// console.log(getUserInfo(userProfile));
+
+// const apiResponse = [
+//   {
+//     id: "art1",
+//     title: "Mastering JavaScript Destructuring",
+//     author: { id: "auth1", name: "Alex Johnson" },
+//     stats: { views: 15034, likes: 2300 },
+//     tags: ["javascript", "es6", "webdev"],
+//   },
+//   {
+//     id: "art2",
+//     title: "A Deep Dive into CSS Grid",
+//     author: { id: "auth2", name: "Maria Garcia" },
+//     stats: { views: 8900, likes: 1800 },
+//     tags: ["css", "frontend"],
+//   },
+//   {
+//     id: "art3",
+//     title: "The Importance of Accessibility",
+//     author: { id: "auth3", name: "Sam Chen" },
+//     stats: { views: 4250, likes: 950 },
+//     tags: [], // Empty tags array
+//   },
+// ];
+
+// function formatArticleData(articles = []) {
+//   return articles.map(
+//     ({
+//       title,
+//       author: { name: author } = {},
+//       stats: { views } = {},
+//       tags: [mainTag = "general"] = [],
+//     } = {}) => ({ title, author, views, mainTag })
+//   );
+// };
+
+// console.log(formatArticleData(apiResponse));
+
+// let userBirthDate = {
+//   year: 2002,
+//   month: 4,
+//   day: 30,
+//   hour: 8,
+//   minute: 17,
+//   [Symbol.iterator]: function () {
+//     // 2. We define the properties we want to iterate over and in what order.
+//     const keys = ['year', 'month', 'day', 'hour', 'minute'];
+//     let index = 0;
+//     // We capture 'this' to refer to the userBirthDate object inside the next() method.
+//     const self = this;
+
+//     // 3. This method must return an iterator object.
+//     return {
+//       // 4. The iterator object must have a next() method.
+//       next: function () {
+//         // 5. Check if we are still within the bounds of our keys array.
+//         if (index < keys.length) {
+//           // If not done, return the current value and set done: false.
+//           const key = keys[index]; // Get the current key, e.g., 'year'
+//           index++;               // Move to the next index for the next call
+//           return { value: self[key], done: false };
+//         } else {
+//           // If we've gone through all keys, signal that we are done.
+//           return { done: true };
+//         }
+//       }
+//     }
+
+//   }
+// }
+
+// let myBirthDay = new Date(...userBirthDate);
+
+// console.log(myBirthDay);
