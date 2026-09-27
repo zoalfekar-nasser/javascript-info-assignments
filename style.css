@@ -1,5 +1,6 @@
 :root {
   color-scheme: dark;
+  color: indigo;
 }
 
 
@@ -9,10 +10,68 @@
 
 .myDiv + .p1 {
   background-color: blue;
+  color: magenta;
+
 }
 
 
 p {
+  
+}
+
+a {
+  display: block;
+  margin-block: .5em;
+}
+
+p + a {
+  background-color: darkmagenta;
+}
+
+p ~ a {
+  background-color: darkblue;
+}
+
+.pizza {
+  color: white;
+  font-size: 20px;
+}
+
+.buttons {
+  font-size: 15px;
+}
+
+.buttons .pp1 {
+  font-size: 2em;
+  padding: 2em;
+}
+
+div.buttons {
+
+}
+
+div:hover {
+
+}
+
+.grid-container {
+  color: white;
+  margin: 1rem;
+  padding: 6rem;
+  border: 2px solid #ccae38;
+
+
+  display: grid;
+  gap: 1rem;
+}
+
+.grid-item {
+  padding: 3rem .5em;
+  border: 1px solid #bbb;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  border-radius: .125rem;
   
 }
 

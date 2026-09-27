@@ -1,0 +1,296 @@
+Look what i want to do, My plan is divided into three pillar:
+
+1- When i want to learn a topic using the 80/20 strategy, i will use the custom instructions you gave me,
+and look at how i used it: that is my question:
+
+I want to learn how to use AI with its latest features in Business in general
+and in Software Engineering in particular, i know the basics, i use Google AI
+studio with some customization to learn some programming concepts and etc, but i
+didn't deep dive into the 2026 working environments that uses Agents and for
+example Cowork and Codex and etc.. i don't know how to use them, but the problem
+that i want to learn for free, i cannot subscribe to any paid AI service
+currently
+
+and look what i got from Gemini flash 3.8:
+
+Framing: A zero-cost, hands-on curriculum focused on modern agentic
+workflows—bridging business process automation (task orchestration and document
+intelligence) and professional AI software engineering (IDE agents, autonomous
+terminal-driven coding, and test-repair loops) using free tools and API tiers.
+
+80/20 Breakdown
+
+  - Structured Outputs and Function Calling: Rather than treating AI as a
+    conversational chatbot, forcing LLMs to return strict JSON/Pydantic schemas
+    and execute deterministic tools eliminates 90% of failures and enables true
+    automation across business systems and software pipelines.
+  - Context Engineering & Repository Indexing: Real-world competence relies on
+    feeding the model the exact minimum viable context (AGENTS.md, codebase
+    maps, system directives) rather than dumping raw data into giant context
+    windows.
+  - In-Editor Copilots with Inline Diffing (VS Code + Continue.dev): Mastering
+    keyboard-driven code generation, inline diff review, and context pinning
+    (@codebase, @docs) inside your local IDE delivers 80% of day-to-day coding
+    productivity gains.
+  - Autonomous CLI Agents with Test-Correction Loops (Aider): Offloading
+    multi-file refactoring, git tracking, and automated bug-fixing to
+    terminal-driven agents that run test suites and self-repair until green
+    eliminates hours of manual boilerplate work.
+  - Multi-Agent Role Architecture (CrewAI / Orchestration): Combining
+    specialized autonomous roles (e.g., researcher, writer, validator) beats
+    single, monolithic prompts every time for complex business analysis,
+    strategy synthesis, and pipeline automation.
+
+Session 1: Structured Outputs, Schema Enforcement, and System Directives
+
+  - Goal: Build an automated API pipeline in Google AI Studio that converts
+    messy, unstructured business meeting notes into strict, schema-validated
+    JSON containing action items, owners, and risk scores.
+  - Time breakdown: 35 min study | 70 min hands-on practice | 15 min review
+  - Core focus: Moving past conversational prompting into deterministic outputs.
+    In enterprise and software environments, text responses are fragile;
+    structured JSON governed by JSON Schema/Pydantic guarantees downstream
+    system compatibility and eliminates hallucinated formats.
+  - Resources: Google AI Studio Documentation: Structured Outputs Guide and
+    System Instructions Best Practices
+    (ai.google.dev/gemini-api/docs/system-instructions & structured-outputs);
+    DeepLearning.AI free short course: ChatGPT Prompt Engineering for Developers
+    (Lesson: "Inferring & Transforming").
+  - Practice: In Google AI Studio, configure a free Gemini 2.0 Flash / 1.5 Flash
+    API setup. Define a strict JSON Schema representing an executive meeting
+    digest (fields: attendees, action_items [task, assignee, deadline], risks
+    [risk, severity: 1-5]). Paste 3 realistic, messy transcripts and write a
+    custom system prompt ensuring the output strictly adheres to the schema with
+    zero markdown wrapper text.
+  - 15-min review: Open a blank text document with no notes and write out the
+    exact structural differences between a zero-shot open prompt, a few-shot
+    prompt, and a system-level schema constraint.
+
+Session 2: Tool Calling and Function Execution
+
+  - Goal: Write a Python script using the free Google Gemini API that
+    automatically detects when to call an external calculation function to
+    evaluate business profit margins.
+  - Time breakdown: 40 min study | 65 min hands-on practice | 15 min review
+  - Core focus: Tool calling (function calling) is the foundational mechanic of
+    all AI agents. Models do not execute code natively—they read declarations,
+    determine when external functions are required, and emit structured
+    arguments for your program to run.
+  - Resources: Google Gemini API Official Documentation: Function Calling
+    Tutorial (ai.google.dev/gemini-api/docs/function-calling); DeepLearning.AI
+    free course: Functions, Tools and Agents with LangChain (Lesson 1 & 2:
+    "OpenAI Function Calling & LangChain Expression Language").
+  - Practice: Set up a local Python virtual environment. Write a script
+    containing two simple business functions: calculate_runway(cash, burn_rate)
+    and get_stock_tax(country). Declare these functions as tools in your Gemini
+    API client, submit natural language business queries (e.g., "We have $250k
+    left and spend $18k/month, how long do we last?"), capture the returned tool
+    call payload, execute the Python function, and return the final answer.
+  - 15-min review: Teach an imagined beginner out loud how an LLM knows to
+    invoke a tool, emphasizing why the model suggests the function call while
+    your local code executes it.
+
+Session 3: In-Editor AI Orchestration with VS Code and Continue.dev
+
+  - Goal: Configure a free, open-source IDE copilot using Continue.dev connected
+    to a free Gemini API key, and use it to refactor an existing multi-file
+    codebase.
+  - Time breakdown: 30 min study | 75 min hands-on practice | 15 min review
+  - Core focus: Native IDE agent workflows beat copy-pasting to browser windows.
+    Learning context-pinning (@codebase, @diff, @docs) and keyboard-driven
+    inline refactoring inside VS Code allows you to navigate and edit code at
+    modern engineering velocity without paid tools like GitHub Copilot or Cursor
+    Pro.
+  - Resources: Continue.dev Official Documentation: Quickstart Guide and Custom
+    Model Configuration (docs.continue.dev); Video: Build with Continue:
+    Open-source AI Code Assistant on the Continue YouTube channel.
+  - Practice: Install VS Code and the Continue extension. Add your free Google
+    AI Studio API key to Continue's config.yaml. Clone a simple open-source
+    repository (e.g., a basic Flask or FastAPI CRUD app). Use keyboard shortcuts
+    to execute an inline refactoring of an endpoint, index the local directory
+    using @codebase, and ask questions requiring Continue to synthesize logic
+    across multiple files.
+  - 15-min review: Without looking at documentation, list the core context
+    providers available in modern IDE assistants (e.g., active file, diff,
+    symbols, codebase) and explain when to use each to conserve token limits.
+
+Session 4: Autonomous Multi-File Coding with Aider CLI
+
+  - Goal: Use the terminal-based autonomous agent Aider with the free Gemini API
+    to implement a new feature across multiple files with automatic Git commits.
+  - Time breakdown: 35 min study | 70 min hands-on practice | 15 min review
+  - Core focus: Terminal coding agents represent the modern standard for
+    autonomous software tasks. Instead of manual copy-pasting, tools like Aider
+    read your Git history, compute repository-wide tree-sitter map structures,
+    write code directly to disk, and draft structured Git commit messages.
+  - Resources: Aider.chat Documentation: Gemini Quickstart and Repository Map
+    Explained (aider.chat/docs/llms/gemini.html); Video: Aider Tutorial: AI Pair
+    Programming in the Terminal (Paul Gauthier / YouTube).
+  - Practice: Install Aider via pip. Export your free Gemini API key in your
+    terminal (export GEMINI_API_KEY="..."). Initialize a Git repository with a
+    basic Python CLI tool. Run aider --model gemini/gemini-1.5-pro (or
+    gemini-2.0-flash). Prompt Aider to: add input validation, write unit tests
+    in a separate directory, update the README.md, and verify that each change
+    generated a clean Git commit.
+  - 15-min review: Write down 3 key differences between an interactive IDE
+    autocomplete extension (like Continue/Copilot) and a CLI agent (like Aider),
+    focusing on git awareness and repository-level context.
+
+Session 5: Test-Driven Autonomous Agent Repair Loops
+
+  - Goal: Build a closed-loop workflow where an autonomous agent executes a
+    failing test suite, reads the stack trace, and iterates on the code until
+    all tests pass.
+  - Time breakdown: 25 min study | 80 min hands-on practice | 15 min review
+  - Core focus: Agents become 10x more reliable when paired with deterministic
+    evaluation environments. Rather than manually inspecting agent output,
+    providing the agent with a test execution command (pytest, npm test) enables
+    it to self-heal code errors without human intervention.
+  - Resources: Aider Documentation: Automated Test-Driven Development (TDD) with
+    Aider (aider.chat/docs/usage/modes.html); ThoughtWorks Technology Radar:
+    Test-driven agentic generation.
+  - Practice: Write a deliberate bug and an accompanying comprehensive pytest
+    file for an inventory management module. Run Aider with the --test-cmd
+    "pytest" flag. Command the agent to implement the required inventory
+    business logic. Observe how Aider catches the failing assertions, analyzes
+    the errors, rewrites the source code, and terminates only when the test
+    suite returns exit code 0.
+  - 15-min review: Reconstruct the complete control-flow loop of an autonomous
+    self-healing agent on a sheet of paper using a flow diagram (Prompt -> LLM
+    -> File Edits -> Test Execution -> Stack Trace -> LLM).
+
+Session 6: Automated Code Review and PR Triage Automation
+
+  - Goal: Build a script that analyzes Git diffs and generates automated,
+    high-signal engineering code reviews focusing on security vulnerabilities
+    and performance bottlenecks.
+  - Time breakdown: 30 min study | 75 min hands-on practice | 15 min review
+  - Core focus: Engineering scale requires continuous automated quality gates.
+    Applying AI to code review is not about checking formatting (which
+    formatters do); it is about semantic review: edge-case failure analysis, SQL
+    injection checks, and architectural conformance.
+  - Resources: Open-source repository: CodiumAI/pr-agent documentation
+    (github.com/Codium-ai/pr-agent); GitHub Docs: Using GitHub Actions with free
+    runners.
+  - Practice: Write a Python script using your free Gemini API key that runs git
+    diff HEAD~1 via Python's subprocess. Construct a strict prompt requiring the
+    model to act as a Staff Security Engineer: identify OWASP vulnerabilities,
+    detect unhandled exceptions, evaluate time complexity, and output a
+    markdown-formatted Pull Request comment. Run it on your recent commits.
+  - 15-min review: Draft 3 concrete evaluation criteria you would put in a
+    system prompt to prevent an AI code reviewer from generating noisy, useless
+    nitpicks.
+
+Session 7: Visual Business Workflow Automation with n8n (Self-Hosted)
+
+  - Goal: Set up a free, self-hosted n8n workflow that ingests competitor news
+    via RSS, processes insights with an LLM, and formats a daily briefing.
+  - Time breakdown: 35 min study | 70 min hands-on practice | 15 min review
+  - Core focus: Business automation requires connecting AI to real-world
+    triggers (webhooks, RSS, email, databases). n8n provides a free, open-source
+    workflow orchestration engine where deterministic logic (if/else, data
+    filters) connects seamlessly to LLM nodes via free API keys.
+  - Resources: n8n Official Documentation: Self-hosting n8n with npm/Docker
+    (docs.n8n.io/hosting); n8n Academy: Advanced AI Orchestration in n8n (free
+    video lessons on n8n.io).
+  - Practice: Install n8n locally via npx n8n (or Docker). Create a new
+    workflow: 1) Add an RSS Feed Read node pulling from a tech or business news
+    feed; 2) Add an AI Agent node using your free Gemini API credential; 3)
+    Instruct the model to score each article's business relevance from 1 to 10
+    and summarize key threats; 4) Add a filter node to keep only items scored >7
+    and write the results to a local file or webhook.
+  - 15-min review: Explain out loud why a visual workflow builder (like n8n) is
+    superior to writing pure Python scripts for integrating multiple business
+    APIs with AI nodes.
+
+Session 8: Multi-Agent Collaboration with CrewAI
+
+  - Goal: Build a local multi-agent research team in Python using CrewAI where
+    one agent researches a business topic and a second agent critically audits
+    and refines the report.
+  - Time breakdown: 40 min study | 65 min hands-on practice | 15 min review
+  - Core focus: Single prompts fail on complex business tasks due to lack of
+    separation of concerns. Multi-agent systems delegate specialized personas
+    (e.g., Analyst, Skeptic/Editor), establish explicit handoffs, and apply
+    peer-critique patterns to dramatically improve output depth.
+  - Resources: DeepLearning.AI free short course: Multi AI Agent Systems with
+    crewAI by João Moura; CrewAI Official Docs: Core Concepts: Agents, Tasks,
+    Crew (docs.crewai.com).
+  - Practice: Install crewai via pip. Configure it to use Gemini via the free
+    API key (ChatGoogleGenerativeAI). Define two distinct agents: 1) "Senior
+    Market Analyst" (goal: identify top 3 market risks for open-source AI
+    in 2026); 2) "Chief Risk Officer" (goal: challenge all assumptions and
+    produce a final bulletproof mitigation strategy). Execute the crew and
+    inspect the agent handoff communication logs.
+  - 15-min review: Answer from memory: What is the "delegation" mechanism in
+    multi-agent frameworks, and why does giving agents distinct, opposing goals
+    reduce overall hallucination?
+
+Session 9: Retrieval-Augmented Generation (RAG) for Business Intelligence
+
+  - Goal: Create a zero-cost local semantic search and Q&A system that
+    accurately answers queries about internal business documents using ChromaDB
+    and free Gemini embeddings.
+  - Time breakdown: 35 min study | 70 min hands-on practice | 15 min review
+  - Core focus: Base models know nothing about proprietary business data. Vector
+    search over local document chunks (RAG) grounds agent responses directly in
+    your company's PDFs, handbooks, or codebase documentation without expensive
+    model fine-tuning.
+  - Resources: LangChain / Chroma Documentation: Vector Stores and Text
+    Embeddings with Gemini (python.langchain.com); DeepLearning.AI free course:
+    Building Systems with the ChatGPT API (Lesson: "Evaluation & RAG
+    fundamentals").
+  - Practice: Install chromadb and google-generativeai. Write a Python script
+    that loads three plain text business policies (e.g., return policies, SLA
+    agreements), splits them into 500-token chunks, and generates local vector
+    embeddings. Implement a retrieval pipeline: accept a user question, query
+    ChromaDB for the top-2 matching chunks, inject those chunks as context into
+    a Gemini prompt, and answer the query with cited sources.
+  - 15-min review: Explain the full vector search lifecycle without looking at
+    references: Document -> Chunking -> Vector Embedding -> Cosine Similarity
+    Retrieval -> Prompt Injection.
+
+Session 10: Capstone: The Automated PR Review and Business Impact Reporter
+
+  - Goal: Build an end-to-end multi-agent tool that inspects a Git commit,
+    generates an engineering test report, and synthesizes a non-technical
+    business impact brief for executive stakeholders.
+  - Time breakdown: 20 min architecture planning | 85 min integration build | 15
+    min final review
+  - Core focus: Integrating both software engineering workflows and business
+    intelligence into a unified pipeline. True 80/20 leverage is the ability to
+    bridge technical data changes directly to business value using automated
+    agents.
+  - Resources: Aggregate all resources from Sessions 2, 4, 6, and 8.
+  - Practice: Write a standalone orchestration script that:
+    1.  Captures the latest Git diff of a repository using Python subprocess.
+    2.  Runs Aider/Gemini to verify whether tests exist for that diff and
+        formats an engineering status update.
+    3.  Feeds that technical output to a CrewAI business agent pair:
+        "Engineering Lead" (translates technical diff into operational changes)
+        and "Product Marketing Manager" (writes a non-technical release note
+        detailing customer impact and revenue implications).
+    4.  Automatically outputs a clean, combined markdown artifact:
+        RELEASE_BRIEF.md.
+  - 15-min review: Re-examine your complete RELEASE_BRIEF.md output. Pinpoint
+    the single weakest link in your autonomous pipeline (e.g., rate limits,
+    context clipping, lack of validation) and articulate the exact deterministic
+    check you would add to harden it.
+
+Beyond the 20 Hours
+
+To progress from functional competence to production-grade implementation,
+deep-dive into agent evaluation frameworks (such as DeepEval or Ragas) to
+systematically benchmark your agent accuracy against ground-truth datasets.
+Next, experiment with running local, open-weights models (via Ollama on hardware
+like Apple Silicon or modern Nvidia GPUs) to eliminate API rate limits entirely
+and achieve 100% private, offline agent execution. Finally, explore asynchronous
+event-driven architectures to scale multi-agent systems reliably across
+distributed message queues like RabbitMQ or Kafka.
+
+
+
+What i want is to take that results, then, i will give them to another chat that analyze them deeply and after that 
+it gives a sequential-executing steps that i can do them one by one, and at the same time it gives me
+all the resources and articles and websites that i will learn the concepts from and that is the second pillar,
+please now provide the custom instructions that can do this, and after that i will tell you my third pillar.
